@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+ <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="=icon-bar"></span>
+            <span class="=icon-bar"></span>
+            <span class="=icon-bar"></span>
+          </button>
+
+<!--              TODO выровнять и вставить лого-->
+        <h3><span class="label label-default">Zach</span></h3>
+
+
+      </div>
+          <form class="navbar-form navbar-left">
+              <div class="form-group">
+                  <button type="submit" class="btn btn-secondary">Home</button>
+              </div>
+          </form>
+
+                <form class="navbar-form navbar-right" method="post">
+                    {% csrf_token %}
+<!--                    допилить-->
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+
+                    {% if request.user.is_authenticated %}
+                    <div class="form-group">
+<!--                        	<ul id="mainmenu" class="mainmenu">-->
+<!--                        <li class="last">{{user.username}} | <a href="{% url 'logout' %}">Logout</a></li>-->
+<!--                    <h3><span class="label label-default">Your avatar</span> {{ request.user.username }}</h3>-->
+
+                       <form action="/organizer">
+                        <button type="submit" class="btn btn-secondary">Logout</button>
+                       </form>
+<!--                                </ul>-->
+                    </div>
+                    {% else %}
+                         <div class="form-group">
+    <!--                         <input type="text" placeholder="Email"  class="form-control" >-->
+                             {{form.username}}
+                         </div>
+                         <div class="form-group">
+    <!--                         <input type="password" placeholder="Password" class="form-control">-->
+                              {{form.password}}
+                         </div>
+                     <button type="submit" class="btn btn-primary">Login</button>
+                      <form action="/register">
+                        <button type="submit" class="btn btn-secondary">Sign-up</button>
+                       </form>
+                    {% endif %}
+        </form>
+      </div>
+     </div>
+
+      <div class="jumbotron">
+        <div class="container">
+             <h3>How it works</h3>
+             <p><a href="#" class="btn btn-primary btn-md">Learn More &raquo;</a> </p>
+        </div>
+        </div>
+
+  <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-3 mx-auto" style="background-color: #FFFFFF">
+                 <form action="/organizer" target="_blank">
+                        <button class="btn btn-primary btn-md btn-block">Organizer</button>
+                   </form>
+                 <a href="/organizer"><img src="https://picshare.ru/uploads/221128/b7zmS2n24x.jpg" class="img-thumbnail" alt=""></a>
+            </div>
+
+            <div class="col-md-3 my-auto" style="background-color: #FFFFFF">
+                 <form action="/projects" target="_blank">
+                        <button class="btn btn-primary btn-md btn-block">Projects</button>
+                   </form>
+                <a href="/projects"><img src="https://picshare.ru/uploads/221128/CkFsZ8n4B7.jpg" class="img-thumbnail" alt=""></a>
+            </div>
+
+
+              <div class="col-md-3" style="background-color: #FFFFFF">
+                   <form action="/add" target="_blank">
+                        <button class="btn btn-primary btn-md btn-block">Add new</button>
+                   </form>
+                  <a href="/add"><img src="https://picshare.ru/uploads/221128/E99Tae56Lg.jpg" class="img-thumbnail" alt=""></a>
+              </div>
+
+              <div class="col-md-3" style="background-color: #FFFFFF">
+                  <form action="/settings" target="_blank">
+                        <button class="btn btn-primary btn-md btn-block">Settings</button>
+                   </form>
+                <a href="/settings"><img src="https://picshare.ru/uploads/221128/697kL0vVvc.jpg" class="img-thumbnail" alt=""></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
